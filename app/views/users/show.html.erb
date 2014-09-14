@@ -2,5 +2,22 @@
 <p>
   <strong>User:</strong>
   <%= current_user.email %><br/>
-</p></td></tr>
+</p>
+<ul>
+  <% @user.friendships.each do |friendship| %>
+    <li> Your Friends:
+      <%=h friendship.friend.email %>
+      (<%= link_to "remove", friendship, :method => :delete %>)
+    </li>
+  <% end %>
+</ul></td><br>
+</tr>
+<p><%= link_to "Find users to friend", users_path %></p>
 </table>
+
+<h3>Users who befriended You:</h3>
+  <ul>
+    <% for user in @user.inverse_friendships %>
+      <li><%=h user.user_email %></li>
+    <% end %>
+  </ul>

@@ -14,7 +14,8 @@
           <p><%= link_to 'Edit profile', edit_user_registration_path %> |
           <%= link_to "Sign out", destroy_user_session_path, method: :delete %> |
 
-          <%= link_to "User home", user_path(current_user) %></p>
+          <%= link_to "Your home page", user_path(current_user) %> |
+          <%= link_to "Send letter", user_path(current_user) %></p>
 
         <% else %>
           <%= link_to "Sign up", new_user_path %> |

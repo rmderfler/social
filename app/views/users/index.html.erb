@@ -4,7 +4,8 @@
   <tbody>
     <% @users.each do |user| %>
       <tr>
-        <tr><td><%=h user.email %></td></tr>
+        <tr><td><%=h user.email %></td><td><%= link_to "Become Friend", friendships_path(:friend_id => user), :method => :post %></td></tr>
+      
       </tr>
     <% end %>
   </tbody>
