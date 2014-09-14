@@ -13,34 +13,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
-  def edit
-    @user = User.find(params[:id])
-  end
-
-  def update
-    @user = User.find(params[:id])
-    if @current_user.id == @user.id
-      if @user.update(user_params)
-        @user.update_attribute(:email, params[:user])
-        flash[:notice] = "User updated."
-        redirect_to session_user_path(session, @user)
-      else
-        render 'edit'
-      end
-    end
-  end
-
-  def destroy
-    @user = User.find(params[:id])
-    if @current_user.id == @user.id
-      if @user.destroy
-        current_user.destroy
-        session[:user_id] = nil
-        flash[:notice] = "The user was deleted."
-        redirect_to root_path
-      end
-    end
-  end
+ 
 
 
 

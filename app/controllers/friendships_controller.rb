@@ -1,12 +1,18 @@
 class FriendshipsController < ApplicationController
   def create
+    @user = current_user
     @friend = User.find(params[:friend_id])
-    @friendship = current_user.friendships.build(:friend_id => params[:friend_id], :user_email => current_user.email)
-    if @friendship.save
-      flash[:notice] = "Added friend."
-      redirect_to root_url
-    else
-      flash[:error] = "Unable to create friend."
+    if !@user.friends.include?(@friend)
+      @friendship = current_user.friendships.build(:friend_id => params[:friend_id], :user_email => current_user.email)
+      if @friendship.save
+        flash[:notice] = "Added friend."
+        redirect_to root_url
+      else
+        flash[:error] = "Unable to create friend."
+        redirect_to root_url
+      end
+    else 
+      flash[:notice] = "You are already friends"
       redirect_to root_url
     end
   end
