@@ -26,15 +26,8 @@ class User < ActiveRecord::Base
   end
 
   def send_signup_email
-    destination_email = self.email
-    gmail = Gmail.connect!('epicodusstudent', '88characters')
-    mail = gmail.compose do
-      to destination_email
-      subject 'Thanks for signing up!'
-      body "And have a great day!"
-    end
-    mail.deliver!
-    gmail.logout
+    @user = self
+    UserMailer.signup_confirmation(@user).deliver
   end
   
 end
