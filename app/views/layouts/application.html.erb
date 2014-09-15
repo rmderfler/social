@@ -15,7 +15,7 @@
           <%= link_to "Sign out", destroy_user_session_path, method: :delete %> |
 
           <%= link_to "Your home page", user_path(current_user) %> |
-          <%= link_to "Send message", new_user_message_path(current_user) %> |
+          <%= link_to "Send message", new_user_message_path(current_user), id: 'new_message', remote: true %> |
           <%= link_to "List Users", users_path %></p>
 
         <% else %>

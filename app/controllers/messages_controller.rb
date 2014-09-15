@@ -13,7 +13,11 @@ class MessagesController < ApplicationController
     @user = User.find(params[:user_id])
     @message = @user.messages.new(message_params)
     if @message.save
-      redirect_to user_path(@user)
+      respond_to do |format|
+      format.html { redirect_to user_path(@user) }
+      format.js
+      end
+      
     else
       render 'new'
     end
