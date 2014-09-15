@@ -13,6 +13,15 @@ class User < ActiveRecord::Base
   has_many :inverse_friends, :through => :inverse_friendships, :source => :user, :foreign_key => "user_email"
 
   has_many :messages
+
+  def friends_messages
+
+    messages = []
+    self.friendships.map { |friendship| friendship.friend }.each do |user|
+      user.messages.each { |message| messages << message } 
+    end
+    messages.sort_by{|message| message[:created_at]}.reverse
+  end
   
 end
 

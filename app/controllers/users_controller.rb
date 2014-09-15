@@ -12,6 +12,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @messages = @user.messages.all
+    @friends_messages = @user.friends_messages
   end
 
 private
