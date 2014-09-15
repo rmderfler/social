@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   validates_uniqueness_of :email
-  validates_presence_of :name
+  
 
   has_many :friendships
   has_many :friends, :through => :friendships
