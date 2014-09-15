@@ -14,6 +14,8 @@ class User < ActiveRecord::Base
 
   has_many :messages
 
+  after_create :send_signup_email
+
   def friends_messages
 
     messages = []
@@ -21,6 +23,18 @@ class User < ActiveRecord::Base
       user.messages.each { |message| messages << message } 
     end
     messages.sort_by{|message| message[:created_at]}.reverse
+  end
+
+  def send_signup_email
+    destination_email = self.email
+    gmail = Gmail.connect!('epicodusstudent', '88characters')
+    mail = gmail.compose do
+      to destination_email
+      subject 'Thanks for signing up!'
+      body "And have a great day!"
+    end
+    mail.deliver!
+    gmail.logout
   end
   
 end
