@@ -1,23 +1,38 @@
-<table><tr><td>
-<p>
+<div id="one">
+<div class="col-md-4">
   <strong>User:</strong>
-  <%= current_user.email %><br/>
-</p>
+  <%= current_user.email %><br>
+<strong>Your Friends:</strong>
 <ul>
   <% @user.friendships.each do |friendship| %>
-    <li> Your Friends:
-      <%=h friendship.friend.email %>
+  
+     <li> <%=h friendship.friend.email %>
       (<%= link_to "remove", friendship, :method => :delete %>)
     </li>
   <% end %>
-</ul></td><br>
-</tr>
-<p><%= link_to "Find users to friend", users_path %></p>
-</table>
+</ul>
+<br>
 
-<h3>Users who befriended You:</h3>
+
+
+<p><strong>Users who befriended You:</strong></p>
   <ul>
     <% for user in @user.inverse_friendships %>
       <li><%=h user.user_email %></li>
     <% end %>
-  </ul>
+  </ul><br>
+  <%= link_to "Find users to friend", users_path %>
+
+</div><br>
+</div>
+<div id="two">
+<div class="col-md-8">
+  <strong>Your messages:</strong>
+  <% @messages.each do |message| %>
+    
+        <li><%= message.content %></li>
+
+    <% end %>
+
+</div> 
+</div>

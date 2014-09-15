@@ -11,13 +11,10 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @messages = @user.messages.all
   end
 
- 
-
-
-
-  private
+private
 
 
   def authorize

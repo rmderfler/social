@@ -1,0 +1,10 @@
+<%= form_for @message, :url => user_messages_path, :html => { :multipart => true } do |f| %>
+  <div class="form-group">
+    <%= f.label :content %>
+    <%= f.text_area :content %>
+  </div>
+
+
+  <%= f.submit(:class => "btn btn-primary") %>
+<% end %>
+</div>
