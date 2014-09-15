@@ -25,10 +25,9 @@ group :development do
   gem 'binding_of_caller'
 end
 
-# add launchy if doing integration testing w/letter_opener!
 group :test do
   gem 'rspec-rails'
-  gem 'factory_girl_rails'#, "~> 4.0"
+  gem 'factory_girl_rails'
   gem 'shoulda-matchers'
   gem 'capybara'
   gem 'poltergeist'
