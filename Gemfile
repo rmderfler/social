@@ -16,6 +16,8 @@ gem 'devise'
 gem 'pry'
 gem 'kaminari'
 gem 'gmail'
+gem 'rest-client'
+gem 'multimap'
 
 group :development do
   gem 'quiet_assets'

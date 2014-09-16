@@ -8,14 +8,17 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
   #config.action_mailer.default_url_options = { :host => 'localhost:3000' }
   config.action_mailer.smtp_settings = {
-  address: "smtp.gmail.com",
+  address: "smtp.mailgun.org",
   port: 587,
-  domain: "localhost:3000",
+  domain: "sandbox1d4ed5601cf94fc8bb0d6a9582a1eb7a.mailgun.org",
   authentication: "plain",
   enable_starttls_auto: true,
-  user_name: ENV["GMAIL_USERNAME"],
-  password: ENV["GMAIL_PASSWORD"]
+  user_name: ENV['GMAIL_USERNAME'],
+  password: ENV['GMAIL_PASSWORD'],
+  :openssl_verify_mode  => 'none'
 }
+  
+  config.action_mailer.perform_deliveries = true
   # Do not eager load code on boot.
   config.eager_load = false
 
@@ -24,7 +27,7 @@ Rails.application.configure do
   config.action_controller.perform_caching = false
 
   # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
